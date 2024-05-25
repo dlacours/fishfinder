@@ -1,4 +1,4 @@
-#include <cmath>
+#include <math.h>
 using namespace std;
 /*
   Ping))) Sensor
@@ -33,7 +33,7 @@ const int readPin_1 = 7;
 const int readPin_2 = 8;
 const int pingPin_2 = 9;
 
-DISTANCE_BETWEEN_SENSORS = 7.15; // cm
+const double DISTANCE_BETWEEN_SENSORS = 7.15; // cm
 
 void setup() {
   // initialize serial communication:
@@ -65,15 +65,15 @@ void loop() {
   duration_2 = pulseIn(readPin_2, HIGH);
 
   // convert the time into a distance
-  d1 = (double)microsecondsToCentimeters(duration_1);
-  d2 = (double)microsecondsToCentimeters(duration_2);
+  double d1 = (double)microsecondsToCentimeters(duration_1);
+  double d2 = (double)microsecondsToCentimeters(duration_2);
 
-  numerator = pow(DISTANCE_BETWEEN_SENSORS, 2) - pow(d1, 2) - pow(d2, 2) ;
-  denominator = 2 * d1 * d2;
-  theta = acos(numerator/denominator);
+  double numerator = pow(DISTANCE_BETWEEN_SENSORS, 2) - pow(d1, 2) - pow(d2, 2) ;
+  double denominator = 2 * d1 * d2;
+  double theta = acos(numerator/denominator);
 
-  x = d2 * cos(theta)
-  y = d2 * sin(theta)
+  double x = d2 * cos(theta);
+  double y = d2 * sin(theta);
 
   Serial.print("x coordinate: ");
   Serial.println(x);
